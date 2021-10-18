@@ -249,7 +249,7 @@ ngx_http_mbtiles_handler(ngx_http_request_t *r)
     tile_zoom = strtol(ngx_str_t_to_char_ptr(mbtiles_zoom), NULL, 10);
     tile_column = strtol(ngx_str_t_to_char_ptr(mbtiles_column), NULL, 10);
     tile_row = strtol(ngx_str_t_to_char_ptr(mbtiles_row), NULL, 10);
-    tms_tile_row = (1l << tile_zoom) - tile_row - 1;
+    tms_tile_row = (1u << tile_zoom) - tile_row - 1;
     if (SQLITE_OK != (sqlite3_ret = sqlite3_bind_int(sqlite_stmt, 1, tile_zoom)
             || SQLITE_OK != sqlite3_bind_int(sqlite_stmt, 2, tile_column)
             || SQLITE_OK != sqlite3_bind_int(sqlite_stmt, 3, tms_tile_row))) {
